@@ -1,0 +1,30 @@
+name: Release signed shortcut
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the unsigned shortcut
+        run: python3 build_shortcut.py
+
+      - name: Sign the shortcut
+        run: shortcuts sign --mode anyone --input send-page-to-gwont.unsigned.shortcut --output send-page-to-gwont.shortcut
+
+      - name: Check the signed file
+        run: |
+          test -s send-page-to-gwont.shortcut
+          ls -l send-page-to-gwont.shortcut
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" send-page-to-gwont.shortcut --title "$GITHUB_REF_NAME" --notes "Signed shortcut built from this commit by the release workflow. Open send-page-to-gwont.shortcut on an iPhone or iPad to add it."
