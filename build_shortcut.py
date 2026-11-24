@@ -2,7 +2,7 @@ import plistlib
 import uuid
 from pathlib import Path
 
-UNSIGNED_SHORTCUT_PATH = Path(__file__).parent / "send-page-to-gwont.unsigned.shortcut"
+UNSIGNED_SHORTCUT_PATH = Path(__file__).parent / "gwont-upload.unsigned.shortcut"
 VARIABLE_PLACEHOLDER = "\N{OBJECT REPLACEMENT CHARACTER}"
 
 SCRAPE_PAGE_JAVASCRIPT = """

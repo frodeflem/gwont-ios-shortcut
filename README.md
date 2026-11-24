@@ -1,4 +1,4 @@
-# Send page to GWONT
+# GWONT Upload
 
 An iOS Shortcut that uploads the Travian page you have open in Safari to [GWONT](https://www.gwont.com), the same way the GWONT browser extension does on a computer.
 
@@ -70,5 +70,5 @@ python build_shortcut.py
 iOS only imports signed shortcuts. Sign the file on a Mac, then open the signed file to add it:
 
 ```sh
-shortcuts sign --mode anyone --input send-page-to-gwont.unsigned.shortcut --output "GWONT Upload.shortcut"
+shortcuts sign --mode anyone --input gwont-upload.unsigned.shortcut --output "GWONT Upload.shortcut"
 ```
