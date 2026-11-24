@@ -22,7 +22,7 @@ It does not read cookies, saved passwords or other tabs, it does not change the 
 ## Setup
 
 1. Create an API key on gwont.com under Settings → Account.
-2. Add the shortcut and paste the key when it asks.
+2. On your iPhone or iPad, open [the latest signed shortcut](https://github.com/frodeflem/gwont-ios-shortcut/releases/latest/download/GWONT.Upload.shortcut) in Safari, add it, and paste the key when it asks.
 3. Turn on Allow Running Scripts: Settings → Apps → Shortcuts → Advanced (on iOS 17 and earlier: Settings → Shortcuts → Advanced).
 4. Open a Travian page in Safari, tap Share, and choose the shortcut.
 5. The first time, iOS asks whether the shortcut may access the page and connect to `api.gwont.com`. Allow both.
