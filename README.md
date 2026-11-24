@@ -70,5 +70,5 @@ python build_shortcut.py
 iOS only imports signed shortcuts. Sign the file on a Mac, then open the signed file to add it:
 
 ```sh
-shortcuts sign --mode anyone --input send-page-to-gwont.unsigned.shortcut --output "Send page to GWONT.shortcut"
+shortcuts sign --mode anyone --input send-page-to-gwont.unsigned.shortcut --output "GWONT Upload.shortcut"
 ```
