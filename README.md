@@ -21,32 +21,67 @@ It does not read cookies, saved passwords or other tabs, it does not change the 
 
 ## Setup
 
-1. Create an API key on gwont.com under Settings → Account.
-2. On your iPhone or iPad, open [GWONT Upload on iCloud](https://www.icloud.com/shortcuts/72374e61a26e421e9de0295046de1329), tap Add Shortcut, and paste the key when it asks. (The same shortcut is in this repository as a [signed file](https://github.com/frodeflem/gwont-ios-shortcut/raw/main/GWONT%20Upload.shortcut).)
+Do these steps on your iPhone or iPad.
+
+1. Create an API key on gwont.com under Settings → Account. Give it a name, tap Create key, then copy the key. It is shown only once.
+
+   ![Naming a new API key on gwont.com](images/api-key-name.png) ![Copying the new API key](images/api-key-copy.png)
+
+2. Open [GWONT Upload on iCloud](https://www.icloud.com/shortcuts/72374e61a26e421e9de0295046de1329), tap Add Shortcut, and paste the key when it asks. (The same shortcut is in this repository as a [signed file](https://github.com/frodeflem/gwont-ios-shortcut/raw/main/GWONT%20Upload.shortcut).)
+
+   ![Pasting the API key when adding the shortcut](images/paste-api-key.png)
+
 3. Turn on Allow Running Scripts: Settings → Apps → Shortcuts → Advanced (on iOS 17 and earlier: Settings → Shortcuts → Advanced).
-4. Open a Travian page in Safari, tap Share, and choose the shortcut.
+
+   ![The Allow Running Scripts setting turned on](images/running-scripts-3.png)
+
+   If you skip this, the shortcut stops with "Could not run Run JavaScript on Web Page". Open the shortcut in the Shortcuts app and tap Open Settings to get to the setting.
+
+   ![Error notification when scripts are not allowed](images/running-scripts-1.png) ![Open Settings link in the shortcut editor](images/running-scripts-2.png)
+
+4. Open a Travian page in Safari, tap the page menu button to the left of the address, tap Share, and choose GWONT Upload.
+
+   ![The page menu button next to the address bar](images/safari-menu.png) ![Share in the page menu](images/safari-share.png)
+
 5. The first time, iOS asks whether the shortcut may access the page and connect to `api.gwont.com`. Allow both.
+6. GWONT's reply appears in a notification.
+
+   ![Notification with GWONT's reply after an upload](images/success.png)
+
+### Putting the shortcut at the top of the share sheet
+
+GWONT Upload starts at the bottom of the share sheet's list. To make it a favourite:
+
+1. In the share sheet, scroll down and tap Edit Actions.
+2. Tap the green plus next to GWONT Upload.
+3. Tap the check mark to save.
+
+![GWONT Upload and Edit Actions in the share sheet](images/safari-edit-actions-1.png) ![Adding GWONT Upload to favourites](images/safari-edit-actions-2.png) ![Saving the favourites](images/safari-edit-actions-3.png)
+
+GWONT Upload then appears in the row of actions near the top of the share sheet.
+
+![GWONT Upload in the share sheet's favourites row](images/safari-edit-actions-4.png)
 
 ## Checking it yourself
 
 Everything the shortcut does is visible. Open it in the Shortcuts editor and compare it with this list:
 
-| # | Step | What to expect |
-|---|------|----------------|
-| 1 | Text | Your API key |
-| 2 | Run JavaScript on Web Page | The script in `SCRAPE_PAGE_JAVASCRIPT` in [build_shortcut.py](build_shortcut.py) |
-| 3 | Get Dictionary Value | `rejection` |
-| 4 | If | Dictionary Value has any value |
-| 5 | Show Alert | "Not a Travian page" |
-| 6 | Stop This Shortcut | |
-| 7 | Otherwise | Empty |
-| 8 | End If | |
-| 9 | Get Dictionary Value | `uploadUrl` |
-| 10 | Get Dictionary Value | `contentEncoding` |
-| 11 | Get Dictionary Value | `bodyBase64` |
-| 12 | Base64 Decode | |
-| 13 | Get Contents of URL | POST to the upload URL, with `Authorization` and `Content-Encoding` headers |
-| 14 | Show Notification | GWONT's reply |
+| #   | Step                       | What to expect                                                                   |
+| --- | -------------------------- | -------------------------------------------------------------------------------- |
+| 1   | Text                       | Your API key                                                                     |
+| 2   | Run JavaScript on Web Page | The script in `SCRAPE_PAGE_JAVASCRIPT` in [build_shortcut.py](build_shortcut.py) |
+| 3   | Get Dictionary Value       | `rejection`                                                                      |
+| 4   | If                         | Dictionary Value has any value                                                   |
+| 5   | Show Alert                 | "Not a Travian page"                                                             |
+| 6   | Stop This Shortcut         |                                                                                  |
+| 7   | Otherwise                  | Empty                                                                            |
+| 8   | End If                     |                                                                                  |
+| 9   | Get Dictionary Value       | `uploadUrl`                                                                      |
+| 10  | Get Dictionary Value       | `contentEncoding`                                                                |
+| 11  | Get Dictionary Value       | `bodyBase64`                                                                     |
+| 12  | Base64 Decode              |                                                                                  |
+| 13  | Get Contents of URL        | POST to the upload URL, with `Authorization` and `Content-Encoding` headers      |
+| 14  | Show Notification          | GWONT's reply                                                                    |
 
 If your copy has other steps, contacts another host, or its script mentions `document.cookie`, `localStorage`, `fetch` or `XMLHttpRequest`, it is not the shortcut built from this repository.
 
